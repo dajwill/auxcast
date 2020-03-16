@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useSetManager from '../useSetManager';
+import useQueueManager from '../useQueueManager';
 
 describe('Set state manager', () => {
   it('creates a new set', () => {
-    const { result } = renderHook(() => useSetManager());
+    const { result } = renderHook(() => useQueueManager());
     expect(result.current).toEqual(
       expect.objectContaining({
         queue: expect.any(Array),
@@ -14,7 +14,7 @@ describe('Set state manager', () => {
 
   it('adds a song to the queue', () => {
     const song = { title: 'Silly Watch' }
-    const { result } = renderHook(useSetManager);
+    const { result } = renderHook(useQueueManager);
 
     act(() => {
       result.current.addSong(song);
@@ -30,7 +30,7 @@ describe('Set state manager', () => {
       { title: 'Silly Watch' },
       { title: 'DHL' }
     ]
-    const { result } = renderHook(useSetManager);
+    const { result } = renderHook(useQueueManager);
 
     act(() => {
       result.current.addSong(songs[0]);

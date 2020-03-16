@@ -7,6 +7,7 @@ describe('Set state manager', () => {
     expect(result.current).toEqual(
       expect.objectContaining({
         queue: expect.any(Array),
+        playIndex: expect.any(Number),
       })
     );
   });
@@ -21,6 +22,22 @@ describe('Set state manager', () => {
 
     expect(result.current.queue).toEqual(
       expect.arrayContaining([song])
-    )
-  })
+    );
+  });
+
+  it('sets play index via song', () => {
+    const songs = [
+      { title: 'Silly Watch' },
+      { title: 'DHL' }
+    ]
+    const { result } = renderHook(useSetManager);
+
+    act(() => {
+      result.current.addSong(songs[0]);
+      result.current.addSong(songs[1]);
+      result.current.playSong(1);
+    });
+
+    expect(result.current.playIndex).toEqual(1);
+  });
 });

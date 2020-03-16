@@ -1,11 +1,9 @@
 import React from 'react';
+import Queue from './Queue/QueueContainer';
+import 'semantic-ui-css/semantic.min.css'
 
 const App = () => {
-  return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
-  );
+  return <Queue />
 };
 
 export default App;

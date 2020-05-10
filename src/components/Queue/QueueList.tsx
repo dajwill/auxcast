@@ -2,7 +2,7 @@ import React from 'react';
 import { Header, List } from 'semantic-ui-react';
 import { isEmpty } from 'lodash';
 
-const QueueList = ({ queue }) => {
+const QueueList = ({ queue = [] }) => {
   return (
     <>
       <Header as="h1">

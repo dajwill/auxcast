@@ -1,7 +1,13 @@
 import React from 'react';
+import Queue from 'components/Queue/QueueContainer';
 
 function HomePage() {
-  return <div>Welcome to Next.js!</div>
+  return (
+    <>
+      <h1>This is a header</h1>
+      <Queue />
+    </>
+  )
 }
 
 export default HomePage;

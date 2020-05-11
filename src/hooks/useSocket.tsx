@@ -13,6 +13,8 @@ const useSocket = (): Socket => {
   useEffect(() => {
     socket.on('connect', () => setConnected(true))
     socket.connect();
+
+    return socket.disconnect;
   }, [])
 
   return connected ? socket : null;

@@ -1,19 +1,25 @@
 import { useCallback, useEffect, useState } from 'react';
 import useSocket from './useSocket';
+import { AuxEvent } from '../constants';
 
 const useSetManager = () => {
   const socket = useSocket();
   const [queue, setQueue] = useState([] as any);
   const [playIndex, setPlayIndex] = useState(0);
   const addSong = useCallback((song) => {
-    setQueue([...queue, song]);
-  }, [queue]);
+    console.log('socket', socket);
+    if (socket) socket.emit(AuxEvent.ADD_SONG, song);
+  }, [queue, socket]);
   const playSong = useCallback((index) => {
     setPlayIndex(index)
   }, [queue]);
 
   useEffect(() => {
-    console.log('socket', socket);
+    if (!socket) return;
+    socket.on(AuxEvent.EMIT_QUEUE, (queue: any) => {
+      console.log(queue);
+      setQueue(queue);
+    })
   }, [socket])
 
   return {
